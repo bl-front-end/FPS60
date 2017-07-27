@@ -16,6 +16,7 @@ RAF本身解决js动画性能，并且非常智能，防止并解决丢帧问题
 ## 使用场景二：函数节流 ##
 
 在高频率事件中，为了防止16ms内发生多次函数执行，使用raf可保证16ms内只触发一次，这既能保证流畅性也能更好的节省函数执行的开销。16ms内函数执行多次没有意义，因为显示器16ms刷新一次，多次执行并不会在界面上有任何显示。
+
     $box = $('#J_num2'),$point = $box.find('i');
    
     $box.on('mousemove',function(e){ 
@@ -149,3 +150,38 @@ RAF进行动画，下面的代码会将id为demo的div右移动到300px
     if(parseInt(demo.style.left)<=300) requestAnimationFrame(arguments.callee);
     });
     </script>
+
+
+测试有阻塞和无阻塞下RAF的结果：
+例子是loading条动画效果，i++60次，同系统计算的固定时长，渲染效果如下：
+
+1、使用setInterval无阻塞FPS效果
+
+> ![](assets/raf-inter-1.jpg)
+> FPS有锯齿10-60
+
+2、使用setInterval有100MS阻塞FPS效果
+
+> ![](assets/raf-inter-2.jpg)
+
+3、使用RAF有无阻塞FPS效果
+
+> ![](assets/raf-raf-1.jpg)
+> FPS60
+
+3、使用RAF有17ms阻塞FPS效果
+
+> ![](assets/raf-raf-2.jpg)
+> FPS间隙60，锯齿是减去阻塞时间加回调引起
+
+4、使用RAF有33ms阻塞FPS效果
+
+> ![](assets/raf-raf-3.jpg)
+> FPS28.5，锯齿是减去阻塞时间加回调引起
+
+在无阻塞的情况下渲染效果好于setInterval，setTimeout的函数动画，稳定平滑。
+
+在有阻塞情况下，17MS近似1000MS/60帧=16.7MS/帧，有锯齿阻碍现象；33MS大于16.7MS/帧一倍，会引起降流畅度，但平滑。推论，有阻碍下，RAF的展示效果好于setInterval，setTimeout的函数动画，稳定平滑。
+
+结果：RAF可以看作setInterval，setTimeout的函数的“提升渲染效果”的升级版。在FPS体现上突出。在可以使用setInterval，setTimeout的地方都可以使用RAF。为了更好地FPS效果，对阻塞问题要认真处理。阻塞+执行小于16.7MS的可以忽略，不影响FPS。
+
