@@ -158,25 +158,33 @@ RAF进行动画，下面的代码会将id为demo的div右移动到300px
 1、使用setInterval无阻塞FPS效果
 
 > ![](assets/raf-inter-1.jpg)
+> 
 > FPS有锯齿10-60
 
 2、使用setInterval有100MS阻塞FPS效果
 
 > ![](assets/raf-inter-2.jpg)
+> 
+> FPS有锯齿10
+
+
 
 3、使用RAF有无阻塞FPS效果
 
 > ![](assets/raf-raf-1.jpg)
+> 
 > FPS60
 
 3、使用RAF有17ms阻塞FPS效果
 
 > ![](assets/raf-raf-2.jpg)
+> 
 > FPS间隙60，锯齿是减去阻塞时间加回调引起
 
 4、使用RAF有33ms阻塞FPS效果
 
 > ![](assets/raf-raf-3.jpg)
+> 
 > FPS28.5，锯齿是减去阻塞时间加回调引起
 
 在无阻塞的情况下渲染效果好于setInterval，setTimeout的函数动画，稳定平滑。
