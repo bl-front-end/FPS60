@@ -91,6 +91,9 @@ raf的执行时间约为16.7ms，即为一帧。那么可以使用raf将页面�
 
 raf实际是一种异步化的操作，曾经setTimeout(function(){},0)一度成为解决了很多前端疑难杂症的法宝。而现在，可以用raf来代替。
 
+## RAF兼容图表
+
+![](assets/raf-caniuse.jpg)
 
 ## 各浏览器兼容RAF方法，同setTimeout用法，如不支持RAF的直接变成使用setTimeout函数 ##
 
