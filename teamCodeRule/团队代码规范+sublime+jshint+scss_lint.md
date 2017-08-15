@@ -1295,8 +1295,8 @@ url的内容要用引号；
     if (condition) {
     	doSomething();
     }
-## 
-null ##
+
+## null ##
 
 适用场景：
 
