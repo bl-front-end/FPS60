@@ -1568,6 +1568,38 @@ gem install scss_lint.
 - EditorConfig 配置文件
 - JSCS 配置文件
 - JSHint 配置文件
+> 
+    配置文件规则
+    {
+	    "curly": true,//循环或者条件语句必须使用花括号包住
+	    "eqeqeq": true,//禁止使用== 和 ！=  强制使用=== 和 ！==
+	    "forin": true,/*这个选项要求所有 for in循环过滤对象的item。他在声明中允许for遍历一个对象所有属性的名称包括通过原型链继承来的属性。*/
+	    "freeze": true,//这个选项禁止重写原生对象的原型列如 Array, Date等等。
+	    "globals": {
+	    	"ImageHandle": true
+	    },
+	    "latedef": true,//禁止定义之前使用变量
+	    "maxerr": 200,//设置JSHint最大警告数
+	    "nonew": true,//这个选项禁止使用new构造器函数。有些人喜欢调用构造函数，但是不赋值给任何对象
+	    "shadow": "inner",//只检查是否在相同的作用域重复定义
+	    "singleGroups": true,//禁止使用分组操作符
+	    "undef": true,//禁止使用不在全局变量列表中的未定义变量
+	    "unused": true,//变量定义未使用    
+	    "evil": true,//禁止使用eval （可以去掉）
+	    "expr": true,//禁止使用表达式，一般的使用函数调用。
+	    "proto": true,//禁止关于__proto__属性的警告
+	    "scripturl": true,//禁止使用脚本URL定向，比如javascript:...
+	    "sub": true,//检查[]使用，可以使用.代替[] 比如person['name'] vs.person.name.    
+	    "browser": true,//暴露浏览器属性的全局变量 如window document
+	    "devel": true,//定义用于调试的全局变量：console,alert
+	    "jquery": true,//定义全局暴露的jQuery库
+	    "nonstandard": true,//这个选项定义非标准但广泛采用全局变量等 escape和 unescape.
+	    "typed": true,//这个选项定义全局变量数组类型构造函数。
+	    "worker": true/*这个选项定义全局变量可以当你的代码运行在web worker.web worker 是运行在后台的 JavaScript，独立于其他脚本，不会影响页面的性能.所有主流浏览器均支持 web worker，除了 Internet Explorer。*/
+    }
+
+
+
 
 	注意：全局变量需要手动加到配置文件的globals属性里，例：
 	    
@@ -1578,6 +1610,166 @@ gem install scss_lint.
     	}
 
 - SCSS-Lint 配置文件
+> 
+    // sass文件目录
+    scss_files: "sass/**/*.scss"     
+    linters:
+      BangFormat:
+	    enabled: true
+	    space_before_bang: true
+	    space_after_bang: false    
+      BemDepth:
+	    enabled: false
+	    max_elements: 1
+    //border 0 规则，不能写成null，只能0
+      BorderZero:
+	    enabled: true
+	    convention: zero # or `none`    
+      ColorKeyword:
+    	enabled: false    
+      ColorVariable:
+    	enabled: false    
+      Comment:
+    	enabled: false    
+      DebugStatement:
+    	enabled: true    
+      DeclarationOrder:
+    	enabled: true    
+      DuplicateProperty:
+    	enabled: false    
+      ElsePlacement:
+	    enabled: true
+	    style: same_line # or 'new_line'    
+      EmptyLineBetweenBlocks:
+	    enabled: false
+	    ignore_single_line_blocks: false    
+      EmptyRule:
+    	enabled: true    
+      FinalNewline:
+	    enabled: false
+	    present: true    
+      HexLength:
+	    enabled: true
+	    style: short # or 'long' PC=>short ,M=>long    
+      HexNotation:
+	    enabled: true
+	    style: lowercase # or 'uppercase'    
+      HexValidation:
+    	enabled: true    
+      IdSelector:
+    	enabled: false    
+      ImportantRule:
+    	enabled: false    
+      ImportPath:
+	    enabled: true
+	    leading_underscore: false
+	    filename_extension: false    
+      Indentation:
+	    enabled: false
+	    allow_non_nested_indentation: false
+	    character: space # or 'tab'
+	    width: 4    
+      LeadingZero:
+	    enabled: true
+	    style: exclude_zero # or 'include_zero'    
+      MergeableSelector:
+	    enabled: true
+	    force_nesting: false    
+      NameFormat:
+	    enabled: true
+	    allow_leading_underscore: false
+	    convention: hyphenated_lowercase # or 'camel_case', or 'snake_case', or a regex pattern	    
+      NestingDepth:
+	    enabled: false
+	    max_depth: 5    
+      PlaceholderInExtend:
+    	enabled: true    
+      PropertyCount:
+	    enabled: false
+	    include_nested: false
+	    max_properties: 10    
+      PropertyUnits:
+	    enabled: true
+	    global: [
+	      'ch', 'em', 'ex', 'rem', # Font-relative lengths
+	      'cm', 'in', 'mm', 'pc', 'pt', 'px', 'q', # Absolute lengths
+	      'vh', 'vw', 'vmin', 'vmax',  # Viewport-percentage lengths
+	      'deg', 'grad', 'rad', 'turn',# Angle
+	      'ms', 's',   # Duration
+	      'Hz', 'kHz', # Frequency
+	      'dpi', 'dpcm', 'dppx',   # Resolution
+	      '%'] # Other
+	    properties: {}    
+      PropertySortOrder:
+	    enabled: false
+	    ignore_unspecified: false
+	    min_properties: 2
+	    separate_groups: true    
+      PropertySpelling:
+	    enabled: true
+	    extra_properties: []    
+      QualifyingElement:
+	    enabled: false
+	    allow_element_with_attribute: false
+	    allow_element_with_class: false
+	    allow_element_with_id: false    
+      SelectorDepth:
+	    enabled: false
+	    max_depth: 5    
+      SelectorFormat:
+	    enabled: true
+	    convention: hyphenated_lowercase # or 'strict_BEM', or 'hyphenated_BEM', or 'snake_case', or 'camel_case', or a regex pattern
+	    ignored_types: ['id']    
+      Shorthand:
+	    enabled: true
+	    allowed_shorthands: [1, 2, 3, 4]    
+      SingleLinePerProperty:
+	    enabled: true
+	    allow_single_line_rule_sets: false    
+      SingleLinePerSelector:
+    	enabled: true    
+      SpaceAfterComma:
+    	enabled: true    
+      SpaceAfterPropertyColon:
+    	enabled: true
+    	style: at_least_one_space # 'one_space', or 'no_space', or 'aligned'    
+      SpaceAfterPropertyName:
+    	enabled: true    
+      SpaceBeforeBrace:
+	    enabled: true
+	    style: space # or 'new_line'
+	    allow_single_line_padding: false    
+      SpaceBetweenParens:
+	    enabled: true
+	    spaces: 0    
+      StringQuotes:
+	    enabled: true
+	    style: double_quotes # or single_quotes    
+      TrailingSemicolon:
+    	enabled: true    
+      TrailingZero:
+    	enabled: true    
+      UnnecessaryMantissa:
+    	enabled: true    
+      UnnecessaryParentReference:
+    	enabled: true    
+      UrlFormat:
+    	enabled: false    
+      UrlQuotes:
+    	enabled: true    
+      VariableForProperty:
+	    enabled: false
+	    properties: []    
+      VendorPrefix:
+	    enabled: false
+	    identifier_list: base
+	    additional_identifiers: []
+	    excluded_identifiers: []    
+      ZeroUnit:
+    	enabled: true    
+      Compass::*:
+    	enabled: false
+    
 
 6、编辑器及插件设置
 
@@ -1595,14 +1787,22 @@ gem install scss_lint.
 
 - SublimeLinter
 
-	右键->SublimeLinter->Lint Mode，有4种检查模式，建议选择 Load/save
-	
-	右键->SublimeLinter->Mark Style，建议选择 Outline
-	
-	右键->SublimeLinter->Choose Gutter Theme，建议选择 Blueberry-round
-	
-	右键->SublimeLinter->Open User Settings，将linter里面jscs的args改成 ["--verbose"]
-	
-	当光标处于有错误的代码行时，详细的错误信息会显示在下面的状态栏中
-	
-	右键->SublimeLinter可以看到所有的快捷键，其中 ctrl+k, a 可以列出所有错误
+	    右键->SublimeLinter->Lint Mode，有4种检查模式，建议选择 Load/save
+    	
+    	右键->SublimeLinter->Mark Style，建议选择 Outline
+    	
+    	右键->SublimeLinter->Choose Gutter Theme，建议选择 Blueberry-round
+    	
+    	右键->SublimeLinter->Open User Settings，将linter里面jscs的args改成 ["--verbose"]
+    	"jshint": {
+    		"@disable": false,
+    		"args": [
+    		"--config",
+    		"E:\\workspace\\b2b-gulp\\.jshintrc"//真实项目windows下jshint文件路径
+    		],
+    		"excludes": []
+    	}
+    	
+    	当光标处于有错误的代码行时，详细的错误信息会显示在下面的状态栏中
+    	
+    	右键->SublimeLinter可以看到所有的快捷键，其中 ctrl+k, a 可以列出所有错误
