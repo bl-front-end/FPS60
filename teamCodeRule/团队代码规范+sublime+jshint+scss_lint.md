@@ -1523,15 +1523,29 @@ switch的falling through和no default的情况一定要有注释特别说明；
 1、安装node包
 
 jscs 
+
 npm install jscs -g
 
 jshint 
+
 npm install jshint -g
 
 2、安装gem包
 
 scss-lint 
-gem install scss_lint
+
+gem install scss_lint.
+
+> 注意：
+> 
+1. 使用gem update遇到这个问题，原来是ruby没有包含SSL证书，所以Https的链接被服务器拒绝。解决方法很简单，首先在这里下载证书(http://curl.haxx.se/ca/cacert.pem), 然后再环境变量=》系统变量里设置SSL_CERT_FILE这个环境变量，并把value指向这个文件
+> 
+1. gem sources --remove https://rubygems.org/ // 如果有资源链接https://rubygems.org/
+> 
+1. gem sources -l // 此命令列出资源链接
+> 
+1. gem sources -a http://gems.ruby-china.org/ //添加http://gems.ruby-china.org/资源链接
+
 
 3、安装sublime3 Package Control
 
