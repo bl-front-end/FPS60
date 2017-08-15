@@ -1522,12 +1522,16 @@ switch的falling through和no default的情况一定要有注释特别说明；
 
 1、安装node包
 
-jscs npm install jscs -g
-jshint npm install jshint -g
+jscs 
+npm install jscs -g
+
+jshint 
+npm install jshint -g
 
 2、安装gem包
 
-scss-lint gem install scss_lint
+scss-lint 
+gem install scss_lint
 
 3、安装sublime3 Package Control
 
