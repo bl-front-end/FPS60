@@ -1559,6 +1559,7 @@ gem install scss_lint.
 	- SublimeLinter
 	- SublimeLinter-jscs
 	- SublimeLinter-jshint	
+	- JSFormat //ctr+alt+f
 	- SublimeLinter-contrib-scss-lint
 	
 5、插件的配置文件
