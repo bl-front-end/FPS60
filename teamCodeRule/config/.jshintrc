@@ -4,6 +4,7 @@
     "forin": true,
     "freeze": true,
     "globals": {
+        "require":true,
         "ImageHandle": true
     },
     "latedef": true,
